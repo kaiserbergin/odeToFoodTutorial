@@ -26,5 +26,11 @@ namespace OdeToFood.Services {
         public IEnumerable<Restaurant> GetAll() {
             return context.Restaurants.OrderBy(r => r.Id);
         }
+
+        public Restaurant Update(Restaurant restaurant) {
+            context.Attach(restaurant).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            context.SaveChanges();
+            return restaurant;
+        }
     }
 }
